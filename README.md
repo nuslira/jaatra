@@ -1,3 +1,36 @@
+Project Developed By - Team Dementors
+
+Project Name - 'J A A T R A'
+
+Project Introduction - 
+
+'J A A T R A' is an online bus ticket booking system. 
+We have connected with over 20 bus enterprises all over Bangladesh to provide you with tickets at your doorstep.
+'J A A T R A' offers you the option to pay through your VISA, mastercard and bkash account! 
+We will also be integrating cash on delivery payment service in the near future.
+<img src="/images/JaatraLOGO.jpg" alt="Jaatra Logo">
+
+Admin Sign In-
+<img src="/images/signin.PNG" alt="Jaatra Logo">
+
+Homepage -
+<img src="/images/JaatraHome.PNG" alt="Jaatra Logo">
+<img src="/images/JaatraHomeTwo.PNG" alt="Jaatra Logo">
+
+Ticket Search -
+<img src="/images/ticketSearch.PNG" alt="Jaatra Logo">
+
+Customer Information-
+<img src="/images/customerInfoPage.PNG" alt="Jaatra Logo">
+
+
+About Section-
+<img src="/images/Developers.PNG" alt="Jaatra Logo">
+
+Contact Section-
+<img src="/images/jaatraContact.PNG" alt="Jaatra Logo">
+
+
 **How to set up the code**
 
 1. Install [Node.js](https://nodejs.org/en/download/) and [MongoDB](https://www.mongodb.com/download-center?jmp=nav) on your computer
