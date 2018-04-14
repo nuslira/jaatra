@@ -13,6 +13,7 @@
   },
   "devDependencies": {},
   "dependencies": {
+    "animejs": "^2.2.0",
     "async": "~2.1.5",
     "body-parser": "~1.16.1",
     "bower": "^1.8.0",
@@ -21,7 +22,7 @@
     "cors": "~2.8.1",
     "crypto": "0.0.3",
     "ejs": "^2.5.6",
-    "express": "~4.14.1",
+    "express": "^4.14.1",
     "express-session": "~1.15.1",
     "glob": "~7.1.1",
     "lodash": "~4.17.4",

@@ -1,0 +1,75 @@
+
+		<% include ../common/header.ejs %>
+		
+      <div class= "container">
+        
+          <form id = ticketForm>
+            <div class="form-group">
+            <label for="From">From</label>
+              <select class="form-control" id="source">
+                 <option value="Dhaka">Dhaka</option>
+                  <option value="Chattogram">Chattogram</option>
+                  <option value="Sylhet">Sylhet</option>
+                  <option value="Jashore">Jashore</option>
+                  <option value="Rajshahi">Rajshahi</option>
+                  <option value="Rangamati">Rangamati</option>
+                  
+                  
+                  <option value="Cox's Bazar">Cox's Bazar</option>
+              </select>
+      <br> 
+              <label for="To">To</label>
+                <select class="form-control" id="destination">
+                    <option value="Dhaka">Dhaka</option>
+                  <option value="Chattogram">Chattogram</option>
+                  <option value="Sylhet">Sylhet</option>
+                  <option value="Jashore">Jashore</option>
+                  <option value="Rajshahi">Rajshahi</option>
+                  <option value="Rangamati">Rangamati</option>
+                  <option value="Cox's Bazar">Cox's Bazar</option>
+                </select>
+              </div>
+              
+             <!--datepicker-->
+             
+             <label for="example-date-input"> Date</label>
+  <input class="form-control" type="date" value="2018-04-14" id="example-date-input">
+  <br>
+             
+           <!--datepicker  -->
+            
+          </br>
+          <button type="button" class="btn btn-success" id="search">Search</button>
+          </br> </br> </br> 
+          <div id="list">
+            
+        </div>
+          </form>
+      
+        
+        
+       
+    </div>
+        
+ <% include ../common/footer.ejs %>
+
+<script>
+  $("#search").click(function(){
+   var pickup= $('#source').val();
+   var destination= $('#destination').val();
+   var query = "pickup="+pickup+"&destination="+destination;
+    $.get("/api/tickets?"+query, function(data, status){
+      var html = new EJS({url: '/views/ticket/ticketList.ejs'}).render({tickets:data});
+    $("#list").html(html);
+    });
+  });
+  </script>
+
+
+<script src="/vendor/ejs_production.js"></script>
+
+ 
+
+	</body>
+
+</html>

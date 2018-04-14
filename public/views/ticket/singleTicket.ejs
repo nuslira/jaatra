@@ -1,0 +1,239 @@
+<!--https://colorlib.com/etc/lf/Login_v15/index.html--> 
+<!--https://colorlib.com/etc/lf/Login_v14/index.html-->
+<!--https://colorlib.com/etc/lf/Login_v10/index.html-->
+<!--https://colorlib.com/wp/html5-and-css3-login-forms/-->
+<!--https://bootsnipp.com/snippets/featured/credit-card-form-bootstrap-3-->
+
+<% include ../common/header.ejs %>
+</br>
+<div class="container">
+  
+  <%console.log(ticket)%>
+  </br>
+  <form >
+    
+    <div class="row" >
+    <div class= "col-md-6">
+     
+      <div class="form-row" >
+          <div class="col-sm-6">
+            <label for='fname'><i class="ti-user"></i> First Name </label>
+            <input type="text" class="form-control" id="fname" placeholder="First name">
+          </div>
+          <div class="col-sm-6">
+            <label for='lname'>Last Name </label>
+            <input type="text" class="form-control" id="lname" placeholder="Last name">
+          </div>
+          </div>
+         <br></br>
+          <div class="form-row" >
+            <div class="col-sm-12" >
+              </br>
+            <label for="email"><i class="ti-email" ></i> Email address</label>
+          <input type="email" class="form-control" id="email" placeholder="name@example.com">
+          
+          </br>
+          <label for='contact'><i class="ti-mobile"></i> Contact </label>
+          <input type="text" class="form-control" id="contact" placeholder="">
+          </br>
+          <label for= 'inputAddress'><i class="ti-home"></i> Address</label>
+          <input type="text" class="form-control" id="inputAddress" placeholder="">
+          </div>
+          </div>
+          
+          
+        
+          <div class="form-row">
+          <div class="form-group col-sm-8">
+            <label for="inputCity"><i class="ti-map-alt"></i> City</label>
+            <input type="text" class="form-control" id="inputCity">
+          </div>
+          
+          <div class="form-group col-sm-4">
+            <label for="inputZip"><i class="ti-clip"></i> Zip</label>
+            <input type="text" class="form-control" id="inputZip">
+          </div>
+        </div>
+          
+         <br></br><br></br>
+          
+         <!--<button type="button" class="btn btn-primary btn-lg btn-block" id="billingDone">Done</button>-->
+         <br></br>
+    </div>
+    
+    
+    <div class= "col-md-6">
+      
+      <div class="panel panel-info">
+  <div class="panel-heading"><i class="ti-ticket"></i> Ticket Summary for <%=ticket.bus.enterpriseName%> Enterprise</div>
+  <div class="panel-body">
+    
+    
+    <div class="form-row">
+         <div class="form-group col-sm-8">
+            <label for="ticketNo"><i class="ti-ticket"></i> No. of Tickets</label>
+            <input type="number" class="form-control" id="ticketNo"> 
+          </div>
+          
+          <div class="form-group col-sm-4">
+            </br>
+          <button type="button" class="btn btn-primary btn-lg btn-block" id="go">GO</button>
+          </div>
+          </div>
+    
+      <div class="form-group col-sm-6">
+        
+            <p><i class="ti-pencil"></i> Ticket Price:BDT <%=ticket.ticketPrice%></p>
+            <p id="serviceCharge"><i class="ti-receipt"></i> Sevice Charge: BDT 20</p>
+            <p id="discount"><i class="ti-receipt"></i> Discount: 0%</p>
+            <p >Total: BDT <span id="ticketTotal" ></span> </p></div>
+        </div>
+    </div>
+    
+    
+    
+      <!--<p><i class="ti-check"></i> Bus Type: <%=ticket.bus.busClass%></p></div>-->
+</div>
+     
+     </br> 
+     <p><i class="ti-wallet"></i> Pay with: </p>
+     
+     <div class="imgContainer">
+        <img src="/images/mastercard.png" data-toggle="modal" data-target="#exampleModalLong" height="100" width="150"/>
+    
+    </div>
+    <div class="imgContainer">
+        <img class="middle-img" src="/images/visa.png" data-toggle="modal" data-target="#exampleModalLong" height="100" width="150"/>
+       
+    </div>
+    <div class="imgContainer">
+         <img src="/images/bkash.png" data-toggle="modal" data-target="#bKash" height="100" width="150"/>
+      
+    </div>
+     
+    </div>
+  </div>
+    
+  </form>
+  
+</div>
+<!--MasterCard modal-->
+<div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Card Details</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+          <div class="modal-body">
+               
+          <div class="form-row" >
+                <div class="col-sm-12" >
+                  </br>
+                <label for="Cname"><i class="ti-user" ></i> Card Holder's name</label>
+                <input type="text" class="form-control" id="Cname" placeholder="Name">
+                  </br>
+                <label for='cardNo'><i class="ti-credit-card"></i> Card No. </label>
+                <input type="text" class="form-control" id="cardNo" placeholder="">
+                  </br>
+                </div>
+          </div>
+              
+          <div class="form-row" >
+               <div class="col-sm-6">
+                <label for="example-date-input" class="col-2 col-form-label"><i class="ti-calendar"></i> Expiry Date</label>
+              <div class="col-10">
+                <input class="form-control" type="date" value="2011-08-19" id="example-date-input">
+              </div>
+            </div>
+          </div>
+          
+          
+          <div class="form-row">
+             <div class="col-sm-6" >
+               <label for='cardCCV'><i class="ti-credit-card"></i> Card CCV. </label>
+               <input type="text" class="form-control" id="cardCCV" placeholder="">
+            </div>
+            <div class="col-sm-12" >
+               </br>
+               <button type="button" class="btn btn-primary btn-lg btn-block">Pay</button>
+            </div>
+          </div>
+         
+       </div>
+          
+      <!--</div>-->
+      
+      <div class="modal-footer">
+        <!--<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>-->
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!--bKash modal-->
+
+<div class="modal fade" id="bKash" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Bkash</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>01. Go to your bKash Mobile Menu by dialing *247#</p>
+        <p>02. Choose “Payment”</p>
+        <p>03. Enter the Merchant bKash Account Number: 01782736377</p>
+        <p>04. Enter the amount you want to pay</p>
+        <p>05. Enter a reference* against your payment</p>
+        <p>06. Enter the Counter Number* (the salesperson at the counter will tell you the number)</p>
+        <p>07. Now enter your bKash Mobile Menu PIN to confirm</p>
+        <p>08. After payment, enter the reference code below</p>
+         <div class="form-row">
+             <div class="col-sm-6" >
+               </br>
+               <input type="text" class="form-control" id="cardCCV" placeholder="">
+            </div>
+            <div class="col-sm-6" >
+               </br>
+               <button type="button" class="btn btn-primary btn-lg btn-block">Go</button>
+            </div>
+          </div>
+      </div>
+      <div class="modal-footer">
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+<% include ../common/footer.ejs %>
+  <script src="/lib/jquery/dist/jquery.min.js"></script>
+  <script src="/vendor/ejs_production.js"></script>
+  <script>
+    $('#myModal').on('shown.bs.modal', function () {
+  $('#myInput').trigger('focus')
+})
+  </script>
+  
+  <script>
+    $( "#go" ).click(function() {
+      
+      var qty = $('#ticketNo').val();
+      console.log(qty);
+      document.getElementById('ticketTotal').innerHTML = <%=ticket.ticketPrice%>* qty + 20 ;
+});
+  </script>
+  </body>
+</html>

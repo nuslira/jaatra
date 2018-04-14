@@ -1,0 +1,23 @@
+.left_right_btns{
+    overflow:hidden;
+}
+
+
+#addroute{
+    float: left;
+}
+
+#submit{
+    float: right;
+}
+
+
+#ticketForm{
+    padding: 80px;
+}
+
+.imgContainer{
+    float:left;
+    padding: 15px;
+}
+

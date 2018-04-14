@@ -23,6 +23,8 @@ var app = require('./express.js')(db);
 // Bootstrap passport config
 require('./passport')();
 
+//app.use('/public', express.static('public'));
+
 app.listen(app.get('port'), function(){
 	console.log('Server running');
 })

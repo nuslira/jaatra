@@ -1,0 +1,118 @@
+
+    <body>
+        
+        
+        <!--<h1>Ticket List</h1>-->
+        <!--<% console.log(tickets) %>-->
+        <!--      <% for(var i=0; i<tickets.length; i++) { %>-->
+        <!--<h3>Enterprise Name: <%= tickets[i].bus.enterpriseName%></h3>         -->
+        <!--<p> Pick up: <%= tickets[i].pickup %> </p>-->
+        <!--<p> Destination: <%= tickets[i].destination %> </p>-->
+        <!--<p> Ticket Price: <%= tickets[i].ticketPrice%></p>-->
+        <!--<p> Available Seats: <%= tickets[i].bus.capacity%></p>-->
+        <!--</br> </br>-->
+        <!--<% } %>-->
+        
+        <% if (tickets.length == 0){
+           %> <h3> Sorry! No Tickets are available at the moment for the selected routes. Thank you for using our service! </h3>        
+        <% }
+        
+        else{ %>
+       
+       <table class="table table-bordered">
+          <thead>
+      <tr>
+        <th scope="col">SL No.</th>
+        <th scope="col">Bus</th>
+        <th scope="col">Class</th>
+        <th scope="col">Depature</th>
+        <th scope="col">No. of seats<br> available</th>
+        <th scope="col">Fare</th>
+        <!--<th scope="col">No. of tickets</th>-->
+        <th scope="col"><i class="ti-shopping-cart"></i></th>
+        <!--<th scope="col">Total</th>-->
+      </tr>
+    </thead>
+         <% for(var i=0; i<tickets.length; i++) { %>
+   <%console.log(tickets[i])%>
+   
+    <tbody>
+      <tr>
+        <th scope="row"><%=i+1%></th>
+        <td><%= tickets[i].bus.enterpriseName%></td>
+        <td> <%= tickets[i].bus.busClass%></td>
+        <td><%= tickets[i].deprtime%></td> 
+       
+        <td> <%= tickets[i].bus.capacity%></td>
+        <td><%= tickets[i].ticketPrice%></td>
+        <!--<td><button  onclick="setPrice(<%=i%>)" type="button" class="btn btn-warning" data-toggle="modal" data-target="#exampleModalCenter">Select</button></td>-->
+        <!--<td><input type="number" class="form-control" id="ticketNo"></td>-->
+        <td><a href="/tickets/<%=tickets[i]._id%>"</a>Buy</td>
+        
+      </tr>
+        
+        <% } %>
+        <% } %>
+          </tbody>
+  </table> 
+  <!-- Modal -->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Select no. of seats</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+           <div class="form-group">
+            <label for="From"></label>
+              <select class="form-control" id="seatNo">
+                 <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option value="5">5</option>
+                  <option value="6">6</option>
+              </select>
+              </div>
+               <div class="details">
+                 <h4 id="price">Ticket Price:</h4>
+                
+                 <h4 id="priceUpdate">Total: </h4>
+               </div>   
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" id="">Checkout</button>
+      </div>
+    </div>
+  </div>
+</div>
+<script src="/lib/jquery/jquery-3.3.1.min.js" crossorigin="anonymous"></script>
+
+<script>
+  $('#myModal').on('shown.bs.modal', function () {
+  $('#myInput').trigger('focus')
+})
+</script>
+<script>
+  $('#seatNo').click(function(){
+    
+      // document.getElementById("priceUpdate").innerHTML = ;
+  })
+  
+  
+  
+</script>
+<script>
+  function setPrice(ticket){
+    // $('#price').text(ticket.price)
+    var tickets= <%- JSON.stringify(tickets)%>
+    console.log(tickets)
+  }
+</script>
+
+    </body>
+    

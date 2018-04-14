@@ -1,0 +1,58 @@
+<% include ../common/header.ejs %>
+    <body>
+        
+        <p>First Name:</p>
+        <input type ="text" class="form-control" id="fname"/><br/><br/>
+        
+        <p>Last Name:</p>
+        <input type ="text" class="form-control"  id="lname"/><br/>
+        
+        <p>email</p>
+        <input type ="text" class="form-control" id="email"/><br/><br/>
+        
+        <p>User Name:</p>
+        <input type ="text" class="form-control"  id="userName"/><br/>
+        
+        <p>Password:</p>
+        <input type ="text" class="form-control"  id="pw"/><br/>
+        
+        <button id="submit">Submit</button>
+    <br/>
+    <div id="error"></div>
+  
+          
+          <% include ../common/footer.ejs %>
+         
+          
+        <script>
+        var newUser = {firstName:"", lastName:"",  email:"", username:"", password:""};
+            $('#submit').click(function(){
+                console.log('submit clicked');
+                newUser.firstName= $('#fname').val();
+                newUser.lastName= $('#lname').val();
+                newUser.email= $('#email').val();
+                newUser.username= $('#userName').val();
+                newUser.password= $('#pw').val();
+                
+                $.ajax({
+                    method: "POST",
+                    url: "/auth/signup",
+                    data: newUser
+                    
+                }).done(function(response){
+                    console.log(response);
+                    
+                }).fail(function(response){
+                    $('#error').text(JSON.parse(response.responseText).message);
+                    console.log(response.responseText);
+                });
+                
+            });
+            
+         
+            
+        </script>
+        
+        
+        </body>
+        </html>

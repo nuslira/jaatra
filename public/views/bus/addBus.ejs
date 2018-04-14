@@ -1,0 +1,125 @@
+
+<% include ../common/admin_header.ejs %>
+
+<div class="container">
+     
+             </br>
+           <div class="row" >
+                <!--<div class= "col-md-6">-->
+                    <!--<div class="form-row" >-->
+                      <div class="col-sm-6">
+                        <label for='enterpriseName'><i class="ti-car"></i> Bus Enterprise Name: </label>
+                        <input type="text" class="form-control" id="enterpriseName" placeholder="">
+                         </br>
+                         <label for='busLicense'><i class="ti-pencil"></i> Bus License Number: </label>
+                        <input type="text" class="form-control" id="busLicense" placeholder="">
+                         </br>
+                         <label for='capacity'><i class="ti-pencil"></i> Capacity: </label>
+                        <input type="number" class="form-control" id="capacity" placeholder="">
+                         </br>
+                        <label class="radio-inline">
+                          <input type="radio" name="class" value="AC">AC
+                        </label>
+                        <label class="radio-inline">
+                          <input type="radio" name="class" value="Non-Ac">Non-AC
+                        </label>
+                        
+                              </br>
+                              </br>
+                        
+                           <button class="btn btn-primary btn-lg btn-block" id="submit">Submit</button>
+                      </div>
+                
+               <div class="col-sm-6">
+                   <div class="container-fluid">
+                       <img src="/images/dhakamaps.jpg" alt="Map">
+                     </br>
+                   </div>
+                   </div>
+            <!--</div>-->
+        </div>
+      
+  </div>
+
+
+
+    
+   <!-- <div class="row">-->
+ 
+   <!--<div class="col-sm-4" id=form_panel>-->
+   <!--       <div class="container">-->
+         
+       
+                
+   <!--     <p>Bus License:</p>-->
+   <!--     <input type ="text" class="form-control" id="busLicense"/><br/><br/>-->
+        
+   <!--     <p>Enterprise Name:</p>-->
+   <!--     <input type ="text" class="form-control"  id="enterpriseName"/><br/>-->
+        
+        
+   <!-- <label class="radio-inline">-->
+   <!--   <input type="radio" name="class" value="AC">AC-->
+   <!-- </label>-->
+   <!-- <label class="radio-inline">-->
+   <!--   <input type="radio" name="class" value="Non-Ac">Non-AC-->
+   <!-- </label>-->
+   <!--     <br/><br/>-->
+        
+   <!--       <p>Capacity:</p>-->
+   <!--     <input type ="text" class="form-control"  id="capacity"/><br/><br/>-->
+        
+        
+        <!--   <p>Routes:</p>-->
+        <!--<input type ="text" class="form-control" id="routes"/><br/><br/>-->
+        
+   <!--     <button class="btn btn-secondary" id="submit">Submit</button>-->
+
+         <!--<div id="error"></div>-->
+         
+         
+   <!--      </div></div>-->
+         
+   <!--       <div class="col-sm-8" id="img_panel">-->
+   <!--           <div class="container" style="margin-top: 50%"> -->
+          <!--<h1> <center>Bus Information</center></h1>-->
+   <!--       </div>-->
+   <!--   </div>-->
+         
+   <!--   </div>-->
+   <!--     </br>-->
+        
+        
+       <% include ../common/footer.ejs %>
+         
+          
+        <script>
+        var newBus = {busLicense:"", enterpriseName:"",  capacity:"", busClass:""};
+            $('#submit').click(function(){
+                console.log('submit clicked');
+                newBus.busLicense= $('#busLicense').val();
+                newBus.enterpriseName= $('#enterpriseName').val();
+                newBus.busClass= $('input[name=class]:checked').val();
+                newBus.capacity= $('#capacity').val();
+                
+                
+                $.ajax({
+                    method: "POST",
+                    url: "/api/buses",
+                    data: newBus
+                    
+                }).done(function(response){
+                    console.log(response);
+                    window.location.replace('/tickets/'+response._id+'/new');
+                }).fail(function(response){
+                    $('#error').text(JSON.parse(response.responseText).message);
+                    alert(JSON.parse(response.responseText).message);
+                });
+                
+            });
+            
+         
+            
+        </script>
+    </body>
+</html>

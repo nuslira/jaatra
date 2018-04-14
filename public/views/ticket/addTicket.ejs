@@ -1,0 +1,125 @@
+<% include ../common/admin_header.ejs %>
+
+
+      <div class="container" >
+        
+          <form id ="ticketForm">
+            <div class="form-group">
+            <label for="From">From</label>
+              <select class="form-control" id="source">
+                  <option value="Dhaka">Dhaka</option>
+                  <option value="Chattogram">Chattogram</option>
+                  <option value="Sylhet">Sylhet</option>
+                  <option value="Jashore">Jashore</option>
+                  <option value="Rajshahi">Rajshahi</option>
+                  <option value="Rangamati">Rangamati</option>
+                  <option value="Cox's Bazar">Cox's Bazar</option>
+              </select>
+      <br> 
+              <label for="To">To</label>
+                <select class="form-control" id="destination">
+                  <option value="Dhaka">Dhaka</option>
+                  <option value="Chattogram">Chattogram</option>
+                  <option value="Sylhet">Sylhet</option>
+                  <option value="Jashore">Jashore</option>
+                  <option value="Rajshahi">Rajshahi</option>
+                  <option value="Rangamati">Rangamati</option>
+                  <option value="Cox's Bazar">Cox's Bazar</option>
+                </select>
+              </div>
+            <br>
+            <p>Depature Time:</p>
+            <input type ="text" class="form-control" id="deprtime"/>
+            
+            <br>
+            <p>Ticket Price:</p>
+            <input type ="text" class="form-control" id="ticketPrice"/><br/><br/>
+          
+          <div class = left_right_btns>
+            
+            <button type="button" class="btn btn-success" id="addroute">Add Another Route</button>
+         
+          <button type="button" class="btn btn-success" id="submit">Done</button>
+            
+            </div>
+          
+          
+          </form>
+        
+       
+    </div>
+
+      <div id="error"></div>
+
+<% include ../common/footer.ejs %>
+ 
+  
+      
+      <script>
+        var newTicket = {pickup:"", destination:"", deprtime: "", ticketPrice:""};
+        
+            $('#addroute').click(function(){
+                console.log('addroute clicked');
+                if($('#source').val()==$('#destination').val()){
+                  alert("Source and destination cannot be same.")
+                }
+                  
+                  else{
+                newTicket.pickup= $('#source').val();
+                newTicket.destination= $('#destination').val();
+                newTicket.deprtime = $('#deprtime').val();
+                newTicket.ticketPrice= $('#ticketPrice').val();
+                newTicket.bus=<%- JSON.stringify(bus._id) %>;
+                
+                $.ajax({
+                    method: "POST",
+                    url: "/api/tickets",
+                    data: newTicket
+                    
+                }).done(function(response){
+                    console.log(response);
+                }).fail(function(response){
+                    $('#error').text(JSON.parse(response.responseText).message);
+                    console.log(response.responseText);
+                });
+                
+                  document.getElementById("ticketForm").reset();
+                 
+                
+                  }
+            });
+            
+            
+            $('#submit').click(function(){
+                console.log('submit clicked');
+                if($('#source').val()==$('#destination').val()){
+                  alert("Source and destination cannot be same.")
+                }
+                  
+                  else{
+                newTicket.pickup= $('#source').val();
+                newTicket.destination= $('#destination').val();
+                newTicket.deprtime = $('#deprtime').val();
+                newTicket.ticketPrice= $('#ticketPrice').val();
+                newTicket.bus=<%- JSON.stringify(bus._id) %>;
+                
+                $.ajax({
+                    method: "POST",
+                    url: "/api/tickets",
+                    data: newTicket
+                    
+                }).done(function(response){
+                    console.log(response);
+                    window.location.replace('/buses/thankyou');
+                }).fail(function(response){
+                    $('#error').text(JSON.parse(response.responseText).message);
+                    console.log(response.responseText);
+                });
+                  }
+            });
+            
+        </script>
+     
+ 
+      
+    </body>

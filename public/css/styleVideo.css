@@ -1,0 +1,5 @@
+.fullscreen-video-wrap{
+    position: absolute;
+    width:100%;
+    overflow: hidden;
+}

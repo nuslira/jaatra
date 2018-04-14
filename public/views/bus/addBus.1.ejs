@@ -1,0 +1,128 @@
+
+<html>
+    <head>
+        <title>New Bus Form</title>
+            <meta charset="utf-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+            <link rel="stylesheet" href="/lib/bootstrap/css/bootstrap.min.css" crossorigin="anonymous" >
+            <link href="/css/main.css" type="text/css" rel="stylesheet" crossorigin="anonymous" >
+        
+    </head>
+    <body> 
+    <nav class="gtco-nav" role="navigation">
+			<div class="gtco-container">
+				
+				<div class="row">
+					<div class="col-sm-2 col-xs-12">
+						<div id="gtco-logo"><a href="index.html"><img src="images/logo.png" alt="Free HTML5 Website Template by FreeHTML5.co"></a></div>
+					</div>
+					<div class="col-xs-10 text-right menu-1">
+						<ul>
+							<li class="active"><a href="index.html">Home</a></li>
+							<li><a href="about.html">About</a></li>
+							<li class="has-dropdown">
+								<a href="services.html">Services</a>
+								<ul class="dropdown">
+									<li><a href="#">Web Design</a></li>
+									<li><a href="#">eCommerce</a></li>
+									<li><a href="#">Branding</a></li>
+									<li><a href="#">API</a></li>
+								</ul>
+							</li>
+							<li class="has-dropdown">
+								<a href="#">Dropdown</a>
+								<ul class="dropdown">
+									<li><a href="#">HTML5</a></li>
+									<li><a href="#">CSS3</a></li>
+									<li><a href="#">Sass</a></li>
+									<li><a href="#">jQuery</a></li>
+								</ul>
+							</li>
+							<li><a href="portfolio.html">Portfolio</a></li>
+							<li><a href="contact.html">Contact</a></li>
+						</ul>
+					</div>
+				</div>
+				
+			</div>
+		</nav>
+		
+    <div class="row">
+ 
+   <div class="col-sm-6" id=form_panel>
+          <div class="container">
+         
+       
+                
+        <p>Bus License:</p>
+        <input type ="text" class="form-control" id="busLicense"/><br/><br/>
+        
+        <p>Enterprise Name:</p>
+        <input type ="text" class="form-control"  id="enterpriseName"/><br/>
+        
+        
+    <label class="radio-inline">
+      <input type="radio" name="class" value="AC">AC
+    </label>
+    <label class="radio-inline">
+      <input type="radio" name="class" value="Non-Ac">Non-AC
+    </label>
+        <br/><br/>
+        
+          <p>Capacity:</p>
+        <input type ="text" class="form-control"  id="capacity"/><br/><br/>
+        
+        
+           <p>Routes:</p>
+        <input type ="text" class="form-control" id="routes"/><br/><br/>
+        
+        <button class="btn btn-secondary" id="submit">Submit</button>
+
+         <div id="error"></div>
+         
+         
+         </div></div>
+         
+          <div class="col-sm-6" id="img_panel">
+              <div class="container" style="margin-top: 50%"> 
+          <!--<h1> <center>Bus Information</center></h1>-->
+          </div>
+      </div>
+         
+      </div>
+        
+       
+        
+          <script src= "/lib/jquery/jquery-3.3.1.min.js"></script>
+         
+          
+        <script>
+        var newBus = {busLicense:"", enterpriseName:"",  capacity:"", routes:"", busClass:""};
+            $('#submit').click(function(){
+                console.log('submit clicked');
+                newBus.busLicense= $('#busLicense').val();
+                newBus.enterpriseName= $('#enterpriseName').val();
+                newBus.busClass= $('input[name=class]:checked').val();
+                newBus.capacity= $('#capacity').val();
+                newBus.routes= $('#routes').val();
+                
+                $.ajax({
+                    method: "POST",
+                    url: "/api/buses",
+                    data: newBus
+                    
+                }).done(function(response){
+                    console.log(response);
+                    window.location.replace('/tickets/'+response._id+'/new');
+                }).fail(function(response){
+                    $('#error').text(JSON.parse(response.responseText).message);
+                    console.log(response.responseText);
+                });
+                
+            });
+            
+         
+            
+        </script>
+    </body>
+</html>
