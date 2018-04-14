@@ -40,7 +40,15 @@ module.exports.aboutView = function(req, res){
   res.render('./../public/views/others/about.ejs', {
   });
 }
+module.exports.enterpriseListView = function(req, res){
+  res.render('./../public/views/others/enterpriseList.ejs', {
+  });
+}
 
+module.exports.ticket_thakyouView = function(req, res){
+  res.render('./../public/views/others/thankyou_ticket.ejs', {
+  });
+}
 
 module.exports.listView = function(req, res){
   
