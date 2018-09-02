@@ -21,6 +21,7 @@ module.exports.list = function(req, res) {
 
 
 
+
 module.exports.createTicket = function(req, res){
   res.render('./../public/views/ticket/addTicket.ejs', {
     user: req.user || null,
@@ -38,7 +39,13 @@ module.exports.singleTicketView = function(req, res){
    
   });
 }
-
+module.exports.editView = function(req, res){
+  res.render('./../public/views/ticket/edit.ejs', {
+    user: req.user || null,
+    ticket: req.ticket
+   
+  });
+}
 
 module.exports.searchView= function(req, res){
   
@@ -129,6 +136,14 @@ module.exports.update = function(req, res) {
   		}
   	});
 };
+module.exports.edit = function(req, res) {
+	res.render('./../public/views/ticket/edit.ejs', {
+		user: req.user || null,
+		ticket: req.ticket
+	});
+};
+
+
 
 exports.ticketByID = function(req, res, next, id) {
 	Ticket.findById(id).populate('bus', 'enterpriseName').exec(function(err, ticket) {

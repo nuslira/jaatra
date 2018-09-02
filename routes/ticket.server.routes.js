@@ -29,5 +29,9 @@ app.route('/tickets/ticketList').get(tickets.listView);
 
 app.param('ticketId', tickets.ticketByID);
 app.param('busId', buses.busByID);
+app.route('/ticket/edit/:ticketId').get(tickets.edit);
+
 
 }
+
+
